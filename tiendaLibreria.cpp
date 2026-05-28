@@ -133,6 +133,31 @@ void buscarLibro(){
     }
 
 }
+
+void mostrarInventario(){
+    cout <<"\n-- INVENTARIO COMPLETO --" <<endl;
+
+    bool hayLibros = false;
+
+    for(int i=0; i< TAMANO_TABLA;i++){
+
+        Nodo* actual = tablaHash[i];
+        while (actual !=NULL){
+            hayLibros = true;
+            cout << "\n[Posicion " << i <<"]"<<endl;
+            cout <<" Titulo   :  "<< actual->dato.titulo <<endl;
+            cout <<" Autor   :  "<< actual->dato.autor <<endl;
+            cout <<" Categoria   :  "<< actual->dato.categoria <<endl;
+            cout <<" Stock   :  "<< actual->dato.stock <<endl;
+            cout <<" Precio   :  "<< actual->dato.precio <<endl;
+            actual = actual->siguiente;
+        }
+    }
+
+    if(!hayLibros){
+        cout<<"El inventario esta vacio."<<endl;
+    }
+}
 int main(){
 
 
