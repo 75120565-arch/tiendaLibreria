@@ -54,6 +54,55 @@ void inicializarTabla(){
     }
 }
 
+void registrarLibro(){
+    Libro nuevoLibro;
+    bool encontrado = false;
+
+    cout << "\n-- REGISTRAR LIBRO --" <<endl;
+
+    cout <<"Titulo:  ";
+    cin.ignore();
+    getline(cin, nuevoLibro.titulo);
+
+    if(nuevoLibro.titulo == ""){
+        cout<< "El titulo no puede estar vacio." <<endl;
+        return;
+    }
+    cout << "Autor: ";
+    getline(cin, nuevoLibro.autor);
+
+    cout << "Categoria: ";
+    getline(cin, nuevoLibro.categoria);
+
+    cout << "Stock: ";
+    cin >> nuevoLibro.stock;
+
+    cout << "Precio: ";
+    cin >> nuevoLibro.precio;
+
+    int posicion = funcionHash(nuevoLibro.titulo);
+
+    Nodo* actual = tablaHash[posicion];
+    while (actual != NULL){
+        if(actual->dato.titulo == nuevoLibro.titulo){
+            encontrado = true;
+        }
+        actual = actual->siguiente;
+    }
+
+    if (encontrado){
+        cout<< "Ese libro ya existe en el inventario." <<endl;
+    } else{
+        Nodo* nuevoNodo = new Nodo();
+        nuevoNodo->dato = nuevoLibro;
+
+        nuevoNodo->siguiente = tablaHash[posicion];
+        tablaHash[posicion] = nuevoNodo;
+
+        cout << "Libro registrado correctamente en posicion "<< posicion << "."<< endl;
+    }
+}
+
 int main(){
 
 
