@@ -158,8 +158,39 @@ void mostrarInventario(){
         cout<<"El inventario esta vacio."<<endl;
     }
 }
+
+void mostrarMenu(){
+    cout << "       SISTEMA DE LIBRERIA     "<<endl;
+    cout<<""<<endl;
+    cout<<" 1. Registrar libro"<<endl;
+    cout<<" 2. Buscar libro"<<endl;
+    cout<<" 3. Mostrar inventario"<<endl;
+    cout<<" 4. Actualizar stock"<<endl;
+    cout<<" 5. Eliminar libro"<<endl;
+    cout<<" 6. Registrar venta"<<endl;
+    cout<<" 7. Ver ventas recientes"<<endl;
+    cout<<" 8. Salir"<<endl;
+    cout<<""<<endl;
+    cout<<"Elige una opcion: "<<endl;
+}
 int main(){
 
+    inicializarTabla();
+
+    int opcion;
+
+    do{
+        mostrarMenu();
+        cin>> opcion;
+
+        switch (opcion){
+            case 1: registrarLibro();   break;
+            case 2: buscarLibro();  break;
+            case 3: mostrarInventario();    break;
+            case 8: cout <<"\nSaliendo del sistema..."<<endl;   break;
+            default: cout<<"\nOpcion invalida."<<endl;  break;
+        }
+    }   while(opcion != 8);
 
     return 0;
 }
