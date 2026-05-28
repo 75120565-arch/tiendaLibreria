@@ -159,6 +159,45 @@ void mostrarInventario(){
     }
 }
 
+void actualizarStock(){
+    string tituloBuscado;
+    bool encontrado = false;
+
+    cout << "\n     ACTUALIZAR STOCK    "<<endl;
+    cout<<"Ingrese el titulo del libro: ";
+    cin.ignore();
+    getline(cin, tituloBuscado);
+
+    int posicion = funcionHash(tituloBuscado);
+
+    Nodo* actual = tablaHash[posicion];
+    while(actual != NULL && !encontrado){
+        if(actual->dato.titulo == tituloBuscado){
+            encontrado = true;
+
+            int nuevoStock;
+            cout<<"Stock actual: "<<actual->dato.stock <<endl;
+            cout<<"Ingrese el nuevo stock: ";
+            cin >> nuevoStock;
+
+            if(nuevoStock<0){
+                cout<<"El stock no puede ser negativo." <<endl;
+            } else{
+                actual->dato.stock = nuevoStock;
+
+                if(actual->dato.stock == 0){
+                    cout <<"Stock actualizado correctamente."<<endl;
+                }
+            }
+        }
+        actual = actual->siguiente;
+    }
+
+    if (!encontrado){
+        cout << "Libro no encontrado."<<endl;
+    }
+}
+
 void mostrarMenu(){
     cout << "       SISTEMA DE LIBRERIA     "<<endl;
     cout<<""<<endl;
@@ -187,6 +226,7 @@ int main(){
             case 1: registrarLibro();   break;
             case 2: buscarLibro();  break;
             case 3: mostrarInventario();    break;
+            case 4: actualizarStock();  break;
             case 8: cout <<"\nSaliendo del sistema..."<<endl;   break;
             default: cout<<"\nOpcion invalida."<<endl;  break;
         }
