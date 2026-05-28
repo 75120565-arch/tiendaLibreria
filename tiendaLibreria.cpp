@@ -103,6 +103,36 @@ void registrarLibro(){
     }
 }
 
+void buscarLibro(){
+    string tituloBuscado;
+    bool encontrado = false;
+
+    cout << "\n-- BUSCAR LIBRO --"<< endl;
+    cout <<"Ingrese el titulo a buscar: ";
+    cin.ignore();
+    getline(cin, tituloBuscado);
+
+    int posicion = funcionHash(tituloBuscado);
+
+    Nodo* actual = tablaHash[posicion];
+    while(actual != NULL){
+        if(actual->dato.titulo == tituloBuscado) {
+            encontrado = true;
+            cout<<"\nLibro encontrado:"<<endl;
+            cout<<"  Titulo  : "<< actual->dato.titulo << endl;
+            cout<<"  Autor  : "<< actual->dato.autor << endl;
+            cout<<"  Categoria  : "<< actual->dato.categoria << endl;
+            cout<<"  Stock  : "<< actual->dato.stock << endl;
+            cout<<"  Precio  : "<< actual->dato.precio << endl;
+        }
+        actual = actual->siguiente;
+    }
+
+    if(!encontrado){
+        cout << "Libro no encontrado." <<endl;
+    }
+
+}
 int main(){
 
 
