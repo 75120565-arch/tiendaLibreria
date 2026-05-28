@@ -40,6 +40,20 @@ Nodo* tablaHash[TAMANO_TABLA];
 // Cuando no hay ventas, apunta a NULL.
 NodoVenta* tope = NULL;
 
+int funcionHash(string titulo){
+    int suma = 0;
+    for(int i=0; i< titulo.size(); i++){
+        suma = suma + titulo[i];
+    }
+    return suma % TAMANO_TABLA;
+}
+
+void inicializarTabla(){
+    for(int i=0; i< TAMANO_TABLA; i++){
+        tablaHash[i] = NULL;
+    }
+}
+
 int main(){
 
 
